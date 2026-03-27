@@ -1,87 +1,87 @@
-# 🖌️ Sculpt Lab — Editor Topológico 2D/3D com Three.js
+# 🖌️ Sculpt Lab — 2D/3D Topological Editor with Three.js
 
-Um **editor interativo de malhas** onde você pinta com um pincel para expandir ou retrair formas 2D em tempo real. Perfeito para prototipagem de editores de roupas, padrões de design, e ferramentas CAD/mecânicas.
+An **interactive mesh editor** where you paint with a brush to expand or shrink 2D shapes in real-time. Perfect for prototyping clothing editors, design patterns, and CAD/mechanical tools.
 
 ---
 
-## 🎯 O que é?
+## 🎯 What is it?
 
-**Sculpt Lab** é um aplicativo web que simula ferramentas profissionais de edição de malha (como encontradas em editores de avatares Roblox, software de design de moda, ou CAD paramétrico).
+**Sculpt Lab** is a web application that simulates professional mesh editing tools (like those found in Roblox avatar editors, fashion design software, or parametric CAD).
 
-### Características Principais
+### Main Features
 
-- ✅ **Pintura em tempo real**: Arraste o mouse para expandir uma forma
-- ✅ **Modo de apagar**: Remova matéria da malha com boolean operations 2D
-- ✅ **Trava de eixos**: Pinte horizontalmente ou verticalmente para resultados precisos
-- ✅ **Visualização 3D**: Mude para modo 3D para rotacionar e inspecionar a malha
-- ✅ **Wireframe**: Veja a topologia limpa da malha sem suavização
-- ✅ **Zero lag**: Operações <5ms mesmo com strokes longos
-- ✅ **Interface intuitiva**: Controles deslizantes e botões na GUI
+- ✅ **Real-time painting**: Drag the mouse to expand a shape
+- ✅ **Erase mode**: Remove matter from the mesh with 2D boolean operations
+- ✅ **Axis lock**: Paint horizontally or vertically for precise results
+- ✅ **3D visualization**: Switch to 3D mode to rotate and inspect the mesh
+- ✅ **Wireframe**: See clean mesh topology without smoothing
+- ✅ **Zero lag**: Operations <5ms even with long strokes
+- ✅ **Intuitive interface**: Sliders and buttons in the GUI
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Clone e instale
+### 1. Clone and install
 
 ```bash
-git clone https://github.com/seu-usuario/sculpt-lab.git
+git clone https://github.com/your-username/sculpt-lab.git
 cd sculpt-lab
 npm install
 ```
 
-### 2. Instale dependências específicas
+### 2. Install specific dependencies
 
 ```bash
 npm install three clipper-lib lil-gui
 ```
 
-### 3. Inicie o servidor de desenvolvimento
+### 3. Start the development server
 
 ```bash
 npm run dev
 ```
 
-### 4. Abra no navegador
+### 4. Open in your browser
 
-Acesse <http://localhost:5173> (ou a URL indicada no terminal)
+Visit <http://localhost:5173> (or the URL shown in the terminal)
 
 ---
 
-## 🎮 Como Usar
+## 🎮 How to Use
 
-### Modos de Visualização
+### Visualization Modes
 
-| Modo | Como ativar | O que faz |
+| Mode | How to activate | What it does |
 | --- | --- | --- |
-| **2D (Pintura)** | Padrão | Pinte na malha com cursores direcionados |
-| **3D (Visualização)** | Menu "Câmera" → "Modo Visualização (3D)" | Rotacione com mouse para ver todos os ângulos |
+| **2D (Painting)** | Default | Paint on the mesh with directed cursors |
+| **3D (Visualization)** | Menu "Camera" → "3D Visualization Mode" | Rotate with mouse to see all angles |
 
-### Controles de Pintura (Modo 2D)
+### Painting Controls (2D Mode)
 
-| Ação | Como fazer |
+| Action | How to do it |
 | --- | --- |
-| **Pintar (Expandir)** | Clique + arraste sobre a malha azul |
-| **Apagar (Retrair)** | Selecione "Apagar (Cortar)" na GUI, depois arraste |
-| **Mudar tamanho do pincel** | Ajuste "Tamanho do Brush" (0.5 a 5.0) |
-| **Restringir movimento** | Use "Travar Eixo": Livre / Horizontal / Vertical |
-| **Ver wireframe** | Ative "Exibir Wireframe" para topologia limpa |
-| **Resetar** | Clique "🗑️ Resetar Formato" para voltar ao quadrado original |
+| **Paint (Expand)** | Click + drag over the blue mesh |
+| **Erase (Shrink)** | Select "Erase (Cut)" in the GUI, then drag |
+| **Change brush size** | Adjust "Brush Size" (0.5 to 5.0) |
+| **Restrict movement** | Use "Axis Lock": Free / Horizontal / Vertical |
+| **View wireframe** | Enable "Show Wireframe" for clean topology |
+| **Reset** | Click "🗑️ Reset Shape" to return to original square |
 
-### Exemplo Prático
+### Practical Example
 
-1. Abra o projeto
-2. Veja o quadrado azul no centro
-3. Clique e arraste para baixo → a forma expande com uma curva suave
-4. Mude para "Apagar (Cortar)" e pinte novamente → a forma recua
-5. Mude para "Horizontal" e pinte uma linha reta → expansão perfeitamente horizontal
-6. Clique na câmera e mude para "Modo Visualização (3D)" → rotacione para ver em 3D
+1. Open the project
+2. See the blue square in the center
+3. Click and drag downward → the shape expands with a smooth curve
+4. Switch to "Erase (Cut)" and paint again → the shape shrinks
+5. Switch to "Horizontal" and paint a straight line → perfectly horizontal expansion
+6. Click on the camera and switch to "3D Visualization Mode" → rotate to see in 3D
 
 ---
 
-## 🏗️ Arquitetura Técnica
+## 🏗️ Technical Architecture
 
-### Stack Tecnológico
+### Technology Stack
 
 ```
 ┌─────────────────────────────────────┐
@@ -94,61 +94,61 @@ Acesse <http://localhost:5173> (ou a URL indicada no terminal)
 └─────────────────────────────────────┘
 ```
 
-### Pipeline de Processamento
+### Processing Pipeline
 
 ```
 Mouse Move (pointermove)
     ↓
-[Salvar ponto em strokePoints]
-[Desenhar cursor/rastro visual]
+[Save point to strokePoints]
+[Draw cursor/visual trail]
     ↓
 Mouse Up (pointerup)
     ↓
-strokeToClipperPath() — Polyline → Cápsula 2D arredondada
+strokeToClipperPath() — Polyline → Rounded 2D capsule
     ↓
 applyStroke() — Boolean union/difference
     ↓
 rebuildMesh() — ExtrudeGeometry 2D→3D
     ↓
-Renderizar malha atualizada
+Render updated mesh
 ```
 
-### Funções Principais
+### Main Functions
 
 #### `rebuildMesh(paths)`
 
-Reconstrói a malha 3D a partir de polígonos 2D Clipper.
+Rebuilds the 3D mesh from 2D Clipper polygons.
 
 ```javascript
 function rebuildMesh(paths) {
-  // Converte cada polígono Clipper em THREE.Shape
-  // Extrudado com THREE.ExtrudeGeometry (espessura = 0.5)
-  // Mescla múltiplas geometrias e cria Mesh
-  // Resultado: malha 3D renderizável
+  // Converts each Clipper polygon to THREE.Shape
+  // Extruded with THREE.ExtrudeGeometry (thickness = 0.5)
+  // Merges multiple geometries and creates Mesh
+  // Result: renderable 3D mesh
 }
 ```
 
 #### `strokeToClipperPath(points, brushSize)`
 
-Converte a polyline do mouse em uma cápsula 2D com bordas arredondadas.
+Converts the mouse polyline into a 2D capsule with rounded edges.
 
 ```javascript
 function strokeToClipperPath(points, brushSize) {
-  // Usa ClipperOffset com JoinType.jtRound
-  // Produz um polígono que representa a área pintada
-  // Retorna ClipperLib.Paths (array de coordenadas inteiras)
+  // Uses ClipperOffset with JoinType.jtRound
+  // Produces a polygon representing the painted area
+  // Returns ClipperLib.Paths (array of integer coordinates)
 }
 ```
 
 #### `applyStroke(mode)`
 
-Executa a operação booleana 2D.
+Executes the 2D boolean operation.
 
 ```javascript
 function applyStroke(mode) {
-  // mode === 'add' → ClipType.ctUnion (expande)
-  // mode === 'erase' → ClipType.ctDifference (retrai)
-  // Atualiza currentPolygons e reconstrói mesh
+  // mode === 'add' → ClipType.ctUnion (expands)
+  // mode === 'erase' → ClipType.ctDifference (shrinks)
+  // Updates currentPolygons and rebuilds mesh
 }
 ```
 
@@ -156,100 +156,100 @@ function applyStroke(mode) {
 
 ## ⚡ Performance
 
-Substituímos a abordagem inicial de **CSG 3D** (que travava em >200ms) por **Clipper.js 2D** (que processa em <5ms):
+We replaced the initial **3D CSG** approach (which stalled at >200ms) with **Clipper.js 2D** (which processes in <5ms):
 
-| Operação | Tempo | Status |
+| Operation | Time | Status |
 | --- | --- | --- |
-| Stroke de 10 pontos | <2ms | ✅ Instantâneo |
-| Stroke de 50 pontos | <5ms | ✅ Suave |
-| 10 strokes consecutivos | Estável | ✅ Zero lag |
-| Mudança de modo | <1ms | ✅ Resposta rápida |
+| 10-point stroke | <2ms | ✅ Instant |
+| 50-point stroke | <5ms | ✅ Smooth |
+| 10 consecutive strokes | Stable | ✅ Zero lag |
+| Mode change | <1ms | ✅ Fast response |
 
-**Por que tão rápido?**
+**Why so fast?**
 
-- Clipper.js trabalha apenas com coordenadas inteiras (sem flutuantes)
-- Operações são O(contorno), não O(triângulos)
-- ExtrudeGeometry triangula uma vez, sem reprocessamento
+- Clipper.js works only with integer coordinates (no floating-point)
+- Operations are O(contour), not O(triangles)
+- ExtrudeGeometry triangulates once, no reprocessing
 
 ---
 
-## 🔧 Configurações Técnicas
+## 🔧 Technical Configuration
 
-### Constantes Importantes (src/main.js)
+### Important Constants (src/main.js)
 
 ```javascript
-const CLIPPER_SCALE = 1000;  // 1 world unit = 1000 unidades Clipper
-const THICKNESS = 0.5;        // Espessura da malha no eixo Z
+const CLIPPER_SCALE = 1000;  // 1 world unit = 1000 Clipper units
+const THICKNESS = 0.5;        // Mesh thickness on Z axis
 ```
 
-**Por quê?**
+**Why?**
 
-- `CLIPPER_SCALE` garante precisão inteira (sem erros de ponto flutuante)
-- `THICKNESS` mantém a malha plana mas com volume renderizável
+- `CLIPPER_SCALE` ensures integer precision (no floating-point errors)
+- `THICKNESS` keeps the mesh flat but with renderable volume
 
-### Estado da Aplicação
+### Application State
 
 ```javascript
 let currentPolygons = [[
-  { X: -5000, Y: -5000 },  // Coordenadas Clipper
-  { X: 5000, Y: -5000 },   // Inteiras para precisão
+  { X: -5000, Y: -5000 },  // Clipper coordinates
+  { X: 5000, Y: -5000 },   // Integer for precision
   { X: 5000, Y: 5000 },
   { X: -5000, Y: 5000 }
 ]];
 
-let shapeMesh = null;        // Mesh THREE.js renderizado
+let shapeMesh = null;        // Rendered THREE.js mesh
 ```
 
-**Nota**: `currentPolygons` é um array de arrays. Cada array interno é um contorno (pode haver buracos/ilhas).
+**Note**: `currentPolygons` is an array of arrays. Each inner array is a contour (can have holes/islands).
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 sculpt-lab/
 ├── src/
-│   ├── main.js                 # Lógica principal (280 linhas)
-│   ├── style.css               # Estilos
-│   └── claude_context.md       # Documentação técnica
-├── index.html                  # Ponto de entrada HTML
-├── package.json                # Dependências e scripts
-├── vite.config.js              # Configuração Vite
-├── README.md                   # Este arquivo
+│   ├── main.js                 # Main logic (280 lines)
+│   ├── style.css               # Styles
+│   └── claude_context.md       # Technical documentation
+├── index.html                  # HTML entry point
+├── package.json                # Dependencies and scripts
+├── vite.config.js              # Vite configuration
+├── README.md                   # This file
 └── docs/
-    └── demo.gif                # Screenshot/animação para visualizar
+    └── demo.gif                # Screenshot/animation to visualize
 ```
 
 ---
 
 ## 🐛 Troubleshooting
 
-### "Blank page / Aplicação não carrega"
+### "Blank page / Application doesn't load"
 
-**Solução**: Verifique se todos os módulos foram instalados:
+**Solution**: Check that all modules are installed:
 
 ```bash
 npm install three clipper-lib lil-gui
 npm run dev
 ```
 
-### "Mesh não aparece quando pinto"
+### "Mesh doesn't appear when I paint"
 
-**Causa**: Certifique-se de que está em **Modo Pintura (2D)** (padrão).
+**Cause**: Make sure you're in **Painting Mode (2D)** (default).
 
-- Verifique o menu "Câmera" na GUI
-- Deve estar em "Modo Pintura (2D)", não "Modo Visualização (3D)"
+- Check the "Camera" menu in the GUI
+- Should be in "Painting Mode (2D)", not "3D Visualization Mode"
 
-### "Pincelada muito lenta"
+### "Brush stroke is slow"
 
-**Cause**: Brush size muito grande ou polyline com muitos pontos.
+**Cause**: Brush size too large or polyline with too many points.
 
-- Reduza "Tamanho do Brush" para 1.0-2.0
-- A aplicação tem filtro de distância automático que evita excesso de pontos
+- Reduce "Brush Size" to 1.0-2.0
+- The application has automatic distance filtering to avoid excess points
 
-### Erros de console
+### Console errors
 
-Se vir `ClipperLib undefined`:
+If you see `ClipperLib undefined`:
 
 ```bash
 npm install clipper-lib --save
@@ -258,101 +258,97 @@ npm run dev
 
 ---
 
-## 🎨 Exemplos de Uso
+## 🎨 Use Cases
 
-### Caso 1: Editor de Roupas de Avatar
-
-```
-1. Comece com um quadrado (malha base)
-2. Pinte nas laterais com Axis Lock Horizontal → aumento/diminuição de mangas
-3. Mude para 3D para verificar proporções
-4. Exporte a topologia final (futura feature)
-```
-
-### Caso 2: Design de Padrões
+### Case 1: Avatar Clothing Editor
 
 ```
-1. Use Axis Lock Vertical para linhas retas
-2. Combine múltiplos strokes para criar padrões geométricos
-3. Use Wireframe para análise de topologia
-4. Reset para começar novo padrão
+1. Start with a square (base mesh)
+2. Paint on sides with Horizontal Axis Lock → sleeve increase/decrease
+3. Switch to 3D to check proportions
+4. Export final topology (future feature)
 ```
 
-### Caso 3: Prototipagem CAD
+### Case 2: Pattern Design
 
 ```
-1. Pinte formas básicas em 2D
-2. Alterne entre Pintar e Apagar para detalhar
-3. Visualize em 3D para ver as proporções
-4. Use Modo Visualização para inspecionar superfícies
+1. Use Vertical Axis Lock for straight lines
+2. Combine multiple strokes to create geometric patterns
+3. Use Wireframe for topology analysis
+4. Reset to start new pattern
+```
+
+### Case 3: CAD Prototyping
+
+```
+1. Paint basic shapes in 2D
+2. Alternate between Paint and Erase to detail
+3. Visualize in 3D to see proportions
+4. Use Visualization Mode to inspect surfaces
 ```
 
 ---
 
-## 🔮 Roadmap Futuro
+## 🔮 Future Roadmap
 
-- [ ] **Exportar malha**: Salvar como GLTF/OBJ
-- [ ] **Undo/Redo**: Histórico de operações
-- [ ] **Importar malha**: Carregar arquivo OBJ/GLTF existente
-- [ ] **Operações 3D**: Extrude, bevel, smooth
-- [ ] **Texturas**: Importar e aplicar imagens
-- [ ] **Colaboração**: Edição em tempo real multiplayer
-- [ ] **Performance**: Otimização para 1000+ strokes
-
----
-
-## 📚 Documentação Técnica
-
-Para entender melhor a implementação:
-
-- Leia [claude_context.md](./src/claude_context.md) — arquitetura completa
-- Explore [main.js](./src/main.js) — linhas comentadas explicam cada seção
-- Verifique o commit history para ver a evolução (CSG → Clipper)
+- [ ] **Export mesh**: Save as GLTF/OBJ
+- [ ] **Undo/Redo**: Operation history
+- [ ] **Import mesh**: Load existing OBJ/GLTF file
+- [ ] **3D Operations**: Extrude, bevel, smooth
+- [ ] **Textures**: Import and apply images
+- [ ] **Collaboration**: Real-time multiplayer editing
+- [ ] **Performance**: Optimization for 1000+ strokes
 
 ---
 
-## 🤝 Contribuindo
+## 📚 Technical Documentation
 
-Contribuições são bem-vindas! Siga estes passos:
+To better understand the implementation:
 
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
-4. Push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
-
-### Diretrizes
-
-- Mantenha o código legível e comentado
-- Teste performance antes de enviar (use DevTools → Performance)
-- Adicione testes se possível
-- Atualize este README se adicionar features
+- Read [claude_context.md](./src/claude_context.md) — complete architecture
+- Explore [main.js](./src/main.js) — commented lines explain each section
+- Check the commit history to see the evolution (CSG → Clipper)
 
 ---
 
-## 📄 Licença
+## 🤝 Contributing
 
-Este projeto está sob licença **MIT**. Veja [LICENSE](./LICENSE) para detalhes.
+Contributions are welcome! Follow these steps:
 
----
+1. Fork the repository
+2. Create a branch for your feature (`git checkout -b feature/MyFeature`)
+3. Commit your changes (`git commit -m 'Add MyFeature'`)
+4. Push to the branch (`git push origin feature/MyFeature`)
+5. Open a Pull Request
 
-## 🙋 Perguntas & Suporte
+### Guidelines
 
-- **Issues**: Abra uma [Issue](https://github.com/seu-usuario/sculpt-lab/issues)
-- **Discussões**: Use [Discussions](https://github.com/seu-usuario/sculpt-lab/discussions)
-- **Email**: <seu-email@example.com>
-
----
-
-## 🎓 Créditos
-
-- **Three.js** — Motor 3D (<https://threejs.org>)
-- **Clipper.js** — Operações booleanas 2D (<https://clipper2.org>)
-- **lil-gui** — Interface de controles (<https://lil-gui.georgealways.com>)
-- **Vite** — Build tool (<https://vitejs.dev>)
+- Keep code readable and commented
+- Test performance before submitting (use DevTools → Performance)
+- Add tests if possible
+- Update this README if you add features
 
 ---
 
-**Made with ❤️ for creative tooling**
+## 📄 License
 
-Last updated: 2026-03-27
+This project is under the **MIT** license. See [LICENSE](./LICENSE) for details.
+
+---
+
+## 🙋 Questions & Support
+
+- **Issues**: Open an [Issue](https://github.com/your-username/sculpt-lab/issues)
+- **Discussions**: Use [Discussions](https://github.com/your-username/sculpt-lab/discussions)
+- **Email**: <your-email@example.com>
+
+---
+
+## 🎓 Credits
+
+- **Three.js** — 3D Engine (<https://threejs.org>)
+- **Clipper.js** — 2D Boolean Operations (<https://clipper2.org>)
+- **lil-gui** — Control Interface (<https://lil-gui.georgealways.com>)
+- **Vite** — Build Tool (<https://vitejs.dev>)
+
+---
