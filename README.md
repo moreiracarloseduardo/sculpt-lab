@@ -289,18 +289,6 @@ npm run dev
 
 ---
 
-## 🔮 Future Roadmap
-
-- [ ] **Export mesh**: Save as GLTF/OBJ
-- [ ] **Undo/Redo**: Operation history
-- [ ] **Import mesh**: Load existing OBJ/GLTF file
-- [ ] **3D Operations**: Extrude, bevel, smooth
-- [ ] **Textures**: Import and apply images
-- [ ] **Collaboration**: Real-time multiplayer editing
-- [ ] **Performance**: Optimization for 1000+ strokes
-
----
-
 ## 📚 Technical Documentation
 
 To better understand the implementation:
