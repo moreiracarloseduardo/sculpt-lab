@@ -3,6 +3,9 @@
 An **interactive mesh editor** where you paint with a brush to expand or shrink 2D shapes in real-time. Perfect for prototyping clothing editors, design patterns, and CAD/mechanical tools.
 
 ---
+![chrome_SG4CZ30qnm](https://github.com/user-attachments/assets/7c529196-4564-4a5f-bed2-04db2aa0bc53)
+
+
 
 ## 🎯 What is it?
 
